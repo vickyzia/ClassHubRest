@@ -18,18 +18,19 @@
     <title>Class Page</title>
 
 		<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
-		
+		<link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
 	<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
 	
 	<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="~/Scripts/classScript.js"> </script>	
     <!-- Bootstrap Core CSS -->
+    
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
 	<link href='~/Content/font1.css' rel='stylesheet' type='text/css'>
     <link href='~/Content/font2.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
+    
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="~/Content/animate.min.css" type="text/css">
@@ -135,7 +136,7 @@
 					
 				</a>
 			</li>
-   } @if (Model.content.Count == 0) { 
+   } @if (Model.quizzes.Count == 0) { 
                 <h3> No Activity here</h3>
             }
 			
