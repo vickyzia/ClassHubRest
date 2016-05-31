@@ -1,19 +1,5 @@
 $(document).ready(function () {
 
-
-
-	$('.joinButton').on('click', function(){
-		var buttonText = $(this).text();
-		buttonText.trim();
-		if(buttonText == "Join"){
-			$(this).text("Leave");
-		}
-		if(buttonText == "Leave"){
-			$(this).text("Join");
-		}
-	});
-
-    
 	var searchFunc = function () {
 
 	    var data = jQuery("#searchBox").val();
@@ -28,27 +14,33 @@ $(document).ready(function () {
 	                if (!$.trim(data)) {
 	                    document.getElementById("results").innerHTML = " ";
 	                }
-
+	                var d = jQuery("#searchBox").val();
 	                var v = JSON.parse(data);
 	                var text = "";
 	                var html = "";
-
+	                var h = "";
 	                if (v.length > 0) {
 	                    for (var i = 0; i < v.length; i++) {
 
-	                        if (v[i].joined) {
-	                            var x = "leave";
+	                        if (v[i].joined == 1) {
+	                            var x = "View";
+	                            h = "<a type=\"button\"class=\"pull-right btn btn-default joinButton\" href=\"/Class/ClassPage?classId="+ v[i].classId+"\">" + x + "</a>";
+
 	                        }
-	                        else {
-	                            var x = "join";
+	                        else if (v[i].joined == 2) {
+	                            x = "Send Request";
+	                            h =  "<a type=\"button\"class=\"pull-right btn btn-default joinButton\" href=\"/Class/RequestToJoin?classId="+ v[i].classId+"&searchquery="+d+"\">" + x + "</a>";
+	                        } else {
+	                            x = "Request Sent";
+	                            h = "<p type=\"button\"class=\"pull-right btn btn-default joinButton\">" + x + "</p>";
 	                        }
 	                        html = "<li class=\"listItem list-group-item\">" +
 
 
                         "<div class=\"row\">" +
-                            "<h3 class=\"list-group-item-heading col-md-8\">" + v[i].className + "</h3>" +
+                            "<h3 class=\"list-group-item-heading col-md-8\">" + v[i].className + "</h3>" + h+
 
-                                        "<a type=\"button\"class=\"pull-right btn btn-default joinButton\" href=\"@Url.Action(\"JoinOrLeaveClass\", \"Class\", \new{classId= v.cl.Id, joined = v.joined })\">" + x + "</a>" +
+                            
 
                         "</div>" +
                         "<div class=\"row\">" +
@@ -78,6 +70,6 @@ $(document).ready(function () {
 
 	};
 	$('#searchBox').keyup(searchFunc);
-
+	searchFunc();
 });
 

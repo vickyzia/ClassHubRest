@@ -1,8 +1,9 @@
-﻿@model ClassHub.Models.DashboardPageData
+﻿@model List<ClassHub.Models.ClassData>
 
 @{
     ViewBag.Title = "Student Dashboard";
-    ViewBag.UserName = Model.userName;
+    ViewBag.UserName = Session["UserName"];
+    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -56,15 +57,15 @@
 
 			  <!-- List group -->
 			  <ul class="list-group" style="list-style: none;" >
-                  @foreach(var item in Model.classes){
+                  @foreach(var item in Model){
                      
                      string id = "class"+item.id.ToString(); 
 				<li class="listItem" id="@id">
-				<a href="ClassPage.html" class="list-group-item">
+				<a href="@Url.Action("ClassPage", "Class", new {classId = item.id })" class="list-group-item">
 					@item.name <span class="badge">@item.notificationCount</span>
 				</a></li>
                   }
-                  @if (Model.classes.Count == 0) { 
+                  @if (Model.Count == 0) { 
                     <h3>No Classes to show</h3>
                   }
 				

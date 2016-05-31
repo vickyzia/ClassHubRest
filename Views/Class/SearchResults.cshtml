@@ -1,7 +1,7 @@
-﻿@model List<ClassHub.Models.SearchClassData>
+﻿
 @{
     ViewBag.Title = "Search Results";
-    ViewBag.UserName = "";
+    ViewBag.UserName = Session["UserName"].ToString() ;
 }
 
 <!DOCTYPE html>

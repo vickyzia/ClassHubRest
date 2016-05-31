@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#addComment').on("click", function(){
+	$('soess').on("click", function(){
 		var text = $('#textBox').val();
 		if(!isEmpty(text)){
 			var html = "<li class=\"listItem list-group-item\">" +

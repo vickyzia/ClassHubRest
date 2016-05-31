@@ -1,8 +1,9 @@
 ﻿@model ClassHub.Models.ClassPageData
 @{
     ViewBag.Title = "Class Page";
-    ViewBag.UserName = Model.username;
+    ViewBag.UserName = Session["UserName"].ToString();
     ViewBag.ClassName = Model.classInfo.name;
+    ViewBag.ClassId = Model.classInfo.Id;
 }
 
 <!DOCTYPE html>
@@ -18,18 +19,19 @@
     <title>Class Page</title>
 
 		<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
-		
+		<link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
 	<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
 	
 	<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="~/Scripts/classScript.js"> </script>	
     <!-- Bootstrap Core CSS -->
+    
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
 	<link href='~/Content/font1.css' rel='stylesheet' type='text/css'>
     <link href='~/Content/font2.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
+    
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="~/Content/animate.min.css" type="text/css">
@@ -55,7 +57,8 @@
 			@foreach(var content in Model.content){
             <li class="listItem">
 			
-				<a href="@Url.Action("ActivitPage","Class")" class="list-group-item" target="_blank">
+               
+				<a href="@Url.Action("ActivityPage", "Class", new { activityId = content.Id})" class="list-group-item" target="_blank">
 					<div class="row">
 						<h2 class="list-group-item-heading col-md-11">@content.heading</h2>
 					
@@ -86,7 +89,7 @@
 			@foreach(var content in Model.assignments){
             <li class="listItem">
 			
-				<a href="@Url.Action("ActivitPage","Class")" class="list-group-item" target="_blank">
+				<a href="@Url.Action("ActivityPage","Class", new { activityId = content.Id})" class="list-group-item" target="_blank">
 					<div class="row">
 						<h2 class="list-group-item-heading col-md-11">@content.heading</h2>
 					
@@ -117,7 +120,7 @@
 			@foreach(var content in Model.quizzes){
             <li class="listItem">
 			
-				<a href="@Url.Action("ActivitPage","Class")" class="list-group-item" target="_blank">
+				<a href="@Url.Action("ActivityPage","Class", new { activityId = content.Id})" class="list-group-item" target="_blank">
 					<div class="row">
 						<h2 class="list-group-item-heading col-md-11">@content.heading</h2>
 					
@@ -135,7 +138,7 @@
 					
 				</a>
 			</li>
-   } @if (Model.content.Count == 0) { 
+   } @if (Model.quizzes.Count == 0) { 
                 <h3> No Activity here</h3>
             }
 			
@@ -147,7 +150,7 @@
 			@foreach(var content in Model.other){
             <li class="listItem">
 			
-				<a href="@Url.Action("ActivitPage","Class")" class="list-group-item" target="_blank">
+				<a href="@Url.Action("ActivityPage","Class", new { activityId = content.Id})" class="list-group-item" target="_blank">
 					<div class="row">
 						<h2 class="list-group-item-heading col-md-11">@content.heading</h2>
 					

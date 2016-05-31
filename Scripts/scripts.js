@@ -1,7 +1,12 @@
 
 jQuery(document).ready(function () {
 
+    var registered = true;
+    var check = true;
+    $('#error-message').hide();
+    $('#error-message').text("");
     /*
+
         Login form validation
     */
     $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function () {
@@ -53,11 +58,29 @@ jQuery(document).ready(function () {
             if ($(this).val() == "") {
                 e.preventDefault();
                 $(this).addClass('input-error');
+                $('#error-message').show();
+                $('#error-message').text("Email Cannot be empty");
+                check = false;
             }
             else {
                 $(this).removeClass('input-error');
+                $('#error-message').hide();
+                $('#error-message').text("");
+                check = true;
+            }
+            if (registered == true && check == true) {
+                e.preventDefault();
+                $(this).addClass('input-error');
+                $('#error-message').show();
+                $('#error-message').text("Email Already Registered");
+            }
+            else if (registered == false && check == true) {
+                $(this).removeClass('input-error');
+                $('#error-message').hide();
+                $('#error-message').text("");
             }
         });
+
 
     });
     $('#reg-form-email').on("blur",
@@ -73,9 +96,15 @@ jQuery(document).ready(function () {
               success: function (data) {
                   if (data == "true") {
                       $('#reg-form-email').removeClass('input-error');
+                      registered = false;
+                      $('#error-message').hide();
+                      $('#error-message').text("");
                   }
                   else {
                       $('#reg-form-email').addClass('input-error');
+                      registered = true;
+                      $('#error-message').show();
+                      $('#error-message').text("Email Already Registered");
 
                   }
               }
@@ -84,5 +113,5 @@ jQuery(document).ready(function () {
 
 
       });
-    
+
 });

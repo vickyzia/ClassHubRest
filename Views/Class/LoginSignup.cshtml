@@ -116,7 +116,7 @@
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-                                    @using (Html.BeginForm("", "", FormMethod.Post, new { role = "form", @class="registration-form", id="reg-form"})){
+                                    @using (Html.BeginForm("performSignup", "Class", FormMethod.Post, new { role = "form", @class="registration-form", id="reg-form"})){
 
 				                    @*<form id="reg-form" role="form" action="" method="post" class="registration-form">*@
 				                    	<div class="form-group">
@@ -136,8 +136,11 @@
 				                        <div class="form-group">
                                              @Html.LabelFor(x=>x.email, new {@class="sr-only"})
 				                        	@*<label class="sr-only" for="form-email">Email</label>*@
-                                            @Html.TextBoxFor(x=>x.email, null, new{ type="email", id="form-email", placeholder="Email...", @class="form-email form-control"})
-@*				                        	<input type="email" name="email" placeholder="Email..." class="form-email form-control" id="reg-form-email">*@
+                                           
+                                             @Html.TextBoxFor(x=>x.email, null, new{ type="email", id="reg-form-email", placeholder="Email...", @class="form-email form-control"})
+                                            <span id="error-message" style="color:red"></span>
+@*				                        	 
+                                            <input type="email" name="email" placeholder="Email..." class="form-email form-control" id="reg-form-email">*@
 				                        </div>
 										<div class="form-group">
                                             @Html.LabelFor(x=>x.password, new {@class="sr-only"})
