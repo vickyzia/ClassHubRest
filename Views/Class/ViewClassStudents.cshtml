@@ -1,7 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Manage Requests";
+    ViewBag.Title = "Class Students";
     ViewBag.UserName = Session["UserName"].ToString();
+    
     
     
 }
@@ -56,10 +57,8 @@
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
 			  <div class="panel-heading">
-			  <p class="col-md-9">Requests<p>
-				<a class="btn btn-default " href="@Url.Action("ProcessAllRequests", "Class", new {acceptReject = 1, classId=ViewBag.ClassId })" >Accept All</a>
-				<a class="btn btn-default" href="@Url.Action("ProcessAllRequests", "Class", new {acceptReject = 2, classId=ViewBag.ClassId })" >Reject All</a>
-			  </div>
+			  <p class="col-md-9">Students<p>
+				</div>
 			  
 			  
 			  <div class="panel-body">
@@ -68,29 +67,29 @@
 
 			  <!-- List group -->
 			  <ul class="list-group">
-                  @foreach (var v in ViewBag.Requests) { 
+                  @foreach (var v in ViewBag.Students) { 
                       
 				<li class="list-group-item">
 					<div class="row">
                         @{
-                      var x = @v.User.fname + " " + @v.User.lname;
+                            var x = @v.fname + " " + @v.lname;
                             }
 
 						<h4 class="col-md-4">@x</h4>
 					</div>
+                    
 					<div class="row">
-						<h6 class="col-md-1">Class: </h6> <h6 class="col-xs-3"> @v.Class.name</h6>
+						<h6 class="col-md-1">Email: </h6> <h6 class="col-xs-3"> @v.email</h6>
 						
 							
-							<a class="btn btn-default col-md-3"  href="@Url.Action("ProcessRequest", "Class", new {acceptReject = 1, userId= v.User.Id, classId=ViewBag.ClassId })">Accept</a>
-							<a class="btn btn-default col-md-3" href="@Url.Action("ProcessRequest", "Class", new {acceptReject = 2, userId= v.User.Id, classId=ViewBag.ClassId })">Reject</a>
+							<a class="btn btn-default col-md-3 pull-right"  href="@Url.Action("removeStudentFromClass", "Class", new { studentId= v.Id, classId=ViewBag.ClassId })">Remove</a>
 						
 					</div>
 				</li>
                   
                   }
-                  @if(ViewBag.Requests.Count ==0){
-                    <h2> No Requests to show</h2>
+                  @if(ViewBag.Students.Count ==0){
+                    <h2> No students to show</h2>
                   }
 				
 			  </ul>

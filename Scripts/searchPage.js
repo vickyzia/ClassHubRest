@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 	var searchFunc = function () {
-
+	   
 	    var data = jQuery("#searchBox").val();
 	    if (data) {
 	        $.ajax({
@@ -71,5 +71,6 @@ $(document).ready(function () {
 	};
 	$('#searchBox').keyup(searchFunc);
 	searchFunc();
+	
 });
 

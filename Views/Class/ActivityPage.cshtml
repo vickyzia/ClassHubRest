@@ -80,7 +80,7 @@
                 }
                 @if(Model.activity.file_url!=null){
                 <div class="row">
-					<p class="col-xs-2 ">File Link:</p><p class="col-xs-10 content" > @Model.activity.file_url</p>
+					<p class="col-xs-2 ">File Link:</p><a href="@Model.activity.file_url" class="col-xs-10 content" > File </a>
 				
 				</div>
                 }
@@ -124,7 +124,7 @@
 						<div class="row">
 							<small class="col-xs-4"> @v.comment.created </small>
 
-							<small class="pull-right"> v.comment.User.type</small>
+							<small class="pull-right"> @v.comment.User.type</small>
 						</div>
 							
 						

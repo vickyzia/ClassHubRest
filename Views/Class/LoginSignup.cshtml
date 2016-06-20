@@ -1,6 +1,6 @@
 ﻿@model ClassHub.Models.User
 @{
-    ViewBag.Title = "Login Or SignUp";    
+        ViewBag.Title = "Login Or SignUp";    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -73,22 +73,24 @@
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-                                    @using (Html.BeginForm("performLogin", "Class", FormMethod.Post, new { role = "form", @class="login-form"}))
+                                    @using (Html.BeginForm("performLogin", "Class", FormMethod.Post, new { role = "form", @class = "login-form" }))
                                     {
 				                   
 				                    	<div class="form-group">
-                                            @Html.LabelFor(x=>x.email, new {@class="sr-only"})
+                                            @Html.LabelFor(x => x.email, new { @class = "sr-only" })
 				                    		@*<label class="sr-only" for="form-username">Email</label>*@
-				                        	@Html.TextBoxFor(x=>x.email, null, new{ type="email", id="email", placeholder="Email...", @class="form-username form-control"})
+				                        	@Html.TextBoxFor(x => x.email, null, new { type = "email", id = "email", placeholder = "Email...", @class = "form-username form-control" })
                                             @*<input id="email" type="email" name="formusername" placeholder="Email..." class="form-username form-control" >*@
 				                        </div>
 				                        <div class="form-group">
-                                             @Html.LabelFor(x=>x.password, new {@class="sr-only"})
+                                             @Html.LabelFor(x => x.password, new { @class = "sr-only" })
 				                        	@*<label class="sr-only" for="form-password">Password</label>*@
 
-                                            @Html.PasswordFor(x=>x.password, new{@class="form-password form-control", id="form-password", placeholder="password..."})
-@*				                        	<input type="password" name="formpassword" placeholder="Password..." class="form-password form-control" id="form-password">*@
-				                        </div>
+                                            @Html.PasswordFor(x => x.password, new { @class = "form-password form-control", id = "form-password", placeholder = "password..." })
+@*				                        	
+                                            <input type="password" name="formpassword" placeholder="Password..." class="form-password form-control" id="form-password">*@
+				                            @Html.ValidationMessageFor(x => x.password)
+                                        </div>
 										
 				                        <button type="submit" id="loginButton" class="btn">Sign in!</button>
 				                    
@@ -116,6 +118,7 @@
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
+                                    
                                     @using (Html.BeginForm("performSignup", "Class", FormMethod.Post, new { role = "form", @class="registration-form", id="reg-form"})){
 
 				                    @*<form id="reg-form" role="form" action="" method="post" class="registration-form">*@
@@ -123,14 +126,14 @@
                                             @Html.LabelFor(x=>x.fname, new {@class="sr-only"})
 				                    		@*<label class="sr-only" for="form-first-name">First name</label>*@
                                             @Html.TextBoxFor(x=>x.fname, null, new{  id="form-first-name", placeholder="First Name...", @class="form-first-name form-control"})
-
+                                            @Html.ValidationMessageFor(x => x.fname)
 				                        	@*<input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">*@
 				                        </div>
 				                        <div class="form-group">
                                             @Html.LabelFor(x=>x.lname, new {@class="sr-only"})
 				                        	@*<label class="sr-only" for="form-last-name">Last name</label>*@
                                             @Html.TextBoxFor(x=>x.lname, null, new{  id="form-last-name", placeholder="Last Name...", @class="form-last-name form-control"})
-
+                                            @Html.ValidationMessageFor(x => x.lname)
 				                        	@*<input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">*@
 				                        </div>
 				                        <div class="form-group">
@@ -138,6 +141,7 @@
 				                        	@*<label class="sr-only" for="form-email">Email</label>*@
                                            
                                              @Html.TextBoxFor(x=>x.email, null, new{ type="email", id="reg-form-email", placeholder="Email...", @class="form-email form-control"})
+                                            @Html.ValidationMessageFor(x => x.email)
                                             <span id="error-message" style="color:red"></span>
 @*				                        	 
                                             <input type="email" name="email" placeholder="Email..." class="form-email form-control" id="reg-form-email">*@
@@ -146,7 +150,7 @@
                                             @Html.LabelFor(x=>x.password, new {@class="sr-only"})
 @*				                        	<label class="sr-only" for="form-email">Email</label>*@
                                             @Html.TextBoxFor(x=>x.password, null, new{ type="password", id="form-password", placeholder="Password...", @class="form-email form-control"})
-
+                                            @Html.ValidationMessageFor(x => x.password)
 @*				                        	<input type="password" name="form-email" placeholder="Password" class="form-email form-control" id="form-password">*@
 				                        </div>
 				                        
@@ -159,10 +163,12 @@
                                             @Html.Label("Student", new{@class ="radio-inline"})
                                             @Html.RadioButtonFor(x => x.type, "Student",new { @class ="radio-inline" })
                                             
+                                            @Html.ValidationMessageFor(x => x.type)
 										@*<label class="radio-inline"><input type="radio" name="optradio">Student</label>	*@
 										</div>
 				                        <button type="submit" class="btn">Sign me up!</button>
 				                    @*</form>*@
+                                        
                                     }
 			                    </div>
                         	</div>
